@@ -1,0 +1,25 @@
+.p-list{
+    &:hover {
+        .p-list__footer {
+            display: block;
+        }  
+    }
+}
+
+.p-list__warning{
+    border-radius: 5px;
+}
+
+.p-list__answer {
+    &--display_none{
+        display: none;
+    }
+}
+
+.p-list__icon{
+    cursor: pointer;
+}
+
+.p-list__footer{
+    display: none;
+}
