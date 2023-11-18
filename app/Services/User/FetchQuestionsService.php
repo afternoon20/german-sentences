@@ -38,12 +38,13 @@ class FetchQuestionsService
         }
 
         $questions = $this->questionRepository->fetchRandom($params);
+
+        // NOTE:正答率の設定
         foreach ($questions['questions'] as $question) {
             if (! $question->question_correct == 0) {
                 $questionCorrectRate[$question->question_id] = number_format($question->question_correct / ($question->question_correct + $question->question_incorrect) * 100, 0);
             }
         }
-
         $this->fetchQuestionsService = $this->questionRepository->getRetation(Arr::pluck($questions['questions'], 'question_id'));
         foreach ($this->fetchQuestionsService['question2rates'] as $rate_question_id => $question2rate) {
             if (! $question2rate->rate_correct == 0) {
@@ -56,8 +57,6 @@ class FetchQuestionsService
         $this->fetchQuestionsService += $questions;
         $this->fetchQuestionsService['questionCorrectRate'] = $questionCorrectRate;
         $this->fetchQuestionsService['questionUserCorrectRate'] = $questionUserCorrectRate;
-
-        // dd($this->fetchQuestionsService);
 
         return $this->fetchQuestionsService;
     }

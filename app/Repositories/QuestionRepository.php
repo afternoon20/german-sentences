@@ -37,10 +37,8 @@ class QuestionRepository
     {
         $question = Question::findOrFail(data_get($params, 'question_id'));
         if ((int) data_get($params, 'isCorrect')) {
-            Log::error('正解');
             $question->question_correct++;
         } else {
-            Log::error('不正解');
             $question->question_incorrect++;
         }
         $question->save();
