@@ -5,32 +5,27 @@ namespace App\Repositories;
 use App\Models\Question;
 use App\Models\Question2favorite;
 use App\Models\Question2rate;
-// use App\Models\Question2;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class QuestionRepository
 {
-    public function fetchAll($params)
+    public function fetchAll($params) : array
     {
-        $questions = Question::where(function ($query) use ($params) {
-            $query->whereIn('question_lesson_id', [data_get($params, 'question_lesson_id', 0)]);
-        })->get();
+        $questions = Question::whereIn('question_lesson_id', [data_get($params, 'question_lesson_id', 0)])->get();
 
-        return compact('questions');
+        return $$questions;
     }
 
-    public function fetchRandom($params)
+    public function fetchRandom(array $params, int $limit = 10) : Collection
     {
-        $query = Question::inRandomOrder()->where(function ($query) use ($params) {
-            $query->whereIn('question_lesson_id', data_get($params, 'lesson_id', [0]));
-        })->take(10);
+        $query = Question::whereIn('question_lesson_id', data_get($params, 'lesson_id', [0]));
         if (data_get($params, 'is_favorite')) {
             $query->join('question2favorites', 'questions.question_id', '=', 'question2favorites.favorite_question_id')->where('question2favorites.favorite_user_id', Auth::user()->id);
         }
-        $questions = $query->get();
+        $questions = $query->inRandomOrder()->take($limit)->get();
 
-        return compact('questions');
+        return $questions;
     }
 
     public function reflectAnswerResult($params)

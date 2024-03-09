@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,9 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 Route::get('/', 'App\Http\Controllers\TopController@index')->name('top.index');
-Route::get('/list', 'App\Http\Controllers\ListController@index')->name('list.index');
-// Route::get('/question', 'App\Http\Controllers\QuestionController@index')->name('question.index');
-// Route::get('/question/list', 'App\Http\Controllers\QuestionController@list')->name('question.list');
+Route::get('/question/list', 'App\Http\Controllers\Question\ListController@index')->name('list.index');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/favorite/register', 'App\Http\Controllers\FavoriteController@register')->name('favorite.register');
     Route::get('/favorite/delete', 'App\Http\Controllers\FavoriteController@delete')->name('favorite.delete');

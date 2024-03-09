@@ -3,14 +3,15 @@
 namespace App\Repositories;
 
 use App\Models\Lesson;
+use Illuminate\Database\Eloquent\Collection;
 
 class LessonRepository
 {
-    public function getMaster($select = [])
+    public function getMaster($select = []) : Collection
     {
         $lessons = Lesson::where($select)->get();
 
-        return compact('lessons');
+        return $lessons;
     }
 
     public function fetchAll($params)

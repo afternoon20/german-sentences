@@ -5,11 +5,7 @@
             <div class="col s6">
                 <p>©Copyright2023 Afternoon-Web.All Rights Reserved.</p>
             </div>
-            <div class="col s6 right-align">
-                ここにシェアボタン
-            </div>
         </div>
-
     </div>
 </footer>
 </body>
