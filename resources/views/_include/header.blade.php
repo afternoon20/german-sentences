@@ -1,7 +1,7 @@
 <header class="p-header">
     <nav>
         <div class="nav-wrapper container">
-            <a href="{{ url('/', null) }}" class="brand-logo">ドイツ語例文出題</a>
+            <a href="{{ url('/', null) }}" class="brand-logo">ドイツ語例題</a>
             <a href="#" data-target="mobile-menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="{{ url('/list', null) }}">問題一覧</a></li>
