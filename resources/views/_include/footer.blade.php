@@ -1,11 +1,7 @@
 </main>
 <footer class="page-footer pt-3 pb-3">
     <div class="container">
-        <div class="row valign-wrapper">
-            <div class="col s6">
-                <p>©Copyright2023 Afternoon-Web.All Rights Reserved.</p>
-            </div>
-        </div>
+        <p class="center-align">©Copyright2023 Afternoon-Web.All Rights Reserved.</p>
     </div>
 </footer>
 </body>
